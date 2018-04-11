@@ -16,18 +16,21 @@ class PostsIndex extends Component {
 
   renderPosts() {
     return _.map(this.props.posts, post => {
-      return (
-        <li className="list-group-item" key={post.id}>
-          <Link to={`/posts/${post.id}`}>
-            {post.title}
-          </Link>
-          <div
-            className="delete-icon"
-            value={post.id}
-            onClick={()=>this.onDeleteClick(post.id)}
-          >x</div>
-        </li>
-      );
+      if(post.title){
+
+        return (
+          <li className="list-group-item" key={post.id}>
+            <Link to={`/posts/${post.id}`}>
+              {post.title}
+            </Link>
+            <div
+              className="delete-icon"
+              value={post.id}
+              onClick={()=>this.onDeleteClick(post.id)}
+            >x</div>
+          </li>
+        );
+      }
     });
   }
 
@@ -37,6 +40,9 @@ class PostsIndex extends Component {
         <div className="text-xs-right">
           <Link className="btn btn-primary" to="/posts/new">
             Add a Post
+          </Link>
+          <Link className="btn btn-primary" to="/wall">
+            VK API
           </Link>
         </div>
         <h3>Posts</h3>
