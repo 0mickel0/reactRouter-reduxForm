@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { FETCH_WALL_ITEMS } from "../actions/vk-actions";
+import { FETCH_WALL_ITEMS } from "../constatnts/ActionType";
 
 export default function(state = {}, action) {
   switch (action.type) {

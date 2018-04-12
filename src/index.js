@@ -13,6 +13,8 @@ import PostsShow from './components/posts_show';
 import WallPosts from './components/vk_api/wall_items';
 import reducers from './reducers';
 
+import ModalRoot  from './constatnts/modalroot';
+
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
@@ -25,6 +27,7 @@ ReactDOM.render(
           <Route path="/wall" component={ WallPosts } />
           <Route path="/" component={ PostIndex } />
         </Switch>
+        <ModalRoot />
       </div>
     </BrowserRouter>
   </Provider>, document.getElementById('root')

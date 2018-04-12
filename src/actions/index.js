@@ -1,9 +1,5 @@
 import axios from "axios";
-
-export const FETCH_POSTS = "fetch_posts";
-export const FETCH_POST = "fetch_post";
-export const CREATE_POST = "create_post";
-export const DELETE_POST = "delete_post";
+import { FETCH_POSTS, FETCH_POST, CREATE_POST, DELETE_POST} from '../constatnts/ActionType'
 
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";

@@ -2,3 +2,62 @@
  float: right;
  cursor: pointer;
 }
+.modal-window-wrapper{
+
+ .content{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+  overflow: auto;
+  text-align: center;
+  overflow-scrolling: touch;
+  padding: 4px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, .65);
+
+  &:after {
+   vertical-align: middle;
+   display: inline-block;
+   height: 100%;
+   margin-left: -.05em;
+   content: '';
+  }
+ }
+
+ .dialog{
+  position: relative;
+  outline: 0;
+  width: 100%;
+  background: white;
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  max-width: 520px;
+  cursor: default;
+  box-shadow: -3px 4px 7px rgba(0, 0, 0, 0.23);
+  border-radius: 3px;
+ }
+
+ .header{
+  padding: 16px 8px 8px 8px
+ }
+
+ .body{
+  padding-bottom: 16px
+ }
+ .modal__close{
+  position: absolute;
+  width: 20px;
+  margin: 5px;
+  line-height: 20px;
+  right:0;
+  top:0;
+  cursor: pointer;
+ }
+ .modal__close::after {
+  content: "✖";
+ }
+}
