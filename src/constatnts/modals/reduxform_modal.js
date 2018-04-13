@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
-import WallNewItem from "../../components/vk_api/wall_new_item"
 
 import { hideModal } from '../../actions/modal';
 import Modal from '../../components/modal';

@@ -2,11 +2,11 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchWallItems, createWallItem } from "../../actions/vk-actions";
+import { fetchWallItems, createWallItem } from "../../../actions/vk-actions";
 import WallNewItem from "./wall_new_item"
 
-import { showModal } from '../../actions/modal';
-import { MODAL_TYPE_NOTIFICATION, MODAL_TYPE_CONFIRMATION, MODAL_TYPE_REDUX_FORM } from '../../constatnts/ActionType';
+import { showModal } from '../../../actions/modal';
+import { MODAL_TYPE_NOTIFICATION, MODAL_TYPE_CONFIRMATION, MODAL_TYPE_REDUX_FORM } from '../../../constatnts/ActionType';
 
 class WallPosts extends Component {
   componentDidMount() {
@@ -51,23 +51,22 @@ class WallPosts extends Component {
   render() {
     return (
       <div>
-        <div className="text-xs-right">
+        <div className="back">
+          <Link to="/" className="back-btn"></Link>
         </div>
         <h3>Posts</h3>
         <ul className="list-group">
           {this.renderPosts()}
         </ul>
-        <Link to="/" className="btn btn-danger">Cancel</Link>
-
         {/*<button onClick={this.showNotification}>*/}
           {/*Show modal*/}
         {/*</button>*/}
         {/*<button onClick={this.showConfirm}>*/}
           {/*Show confirm*/}
         {/*</button>*/}
-        <button onClick={this.showPostForm}>
-          Show redux
-        </button>
+        <div className="add-post" onClick={this.showPostForm}>
+          +
+        </div>
       </div>
     );
   }

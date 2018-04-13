@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { createWallItem } from "../../actions/vk-actions";
-import { hideModal } from '../../actions/modal';
+import { createWallItem } from "../../../actions/vk-actions";
+import { hideModal } from '../../../actions/modal';
 
 class WallNewItem extends Component {
 

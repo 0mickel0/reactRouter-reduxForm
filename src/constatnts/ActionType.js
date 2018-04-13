@@ -5,6 +5,7 @@ export const DELETE_POST = "delete_post";
 
 export const FETCH_WALL_ITEMS = "fetch_wall_items";
 export const CREATE_WALL_ITEM = "create_wall_item";
+export const FETCH_USERS = "fetch_users";
 
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';

@@ -19,16 +19,18 @@ class PostsIndex extends Component {
       if(post.title){
 
         return (
-          <li className="list-group-item" key={post.id}>
-            <Link to={`/posts/${post.id}`}>
-              {post.title}
-            </Link>
-            <div
-              className="delete-icon"
-              value={post.id}
-              onClick={()=>this.onDeleteClick(post.id)}
-            >x</div>
-          </li>
+          <div key={post.id}>
+            <li className="list-group-item" >
+              <Link to={`/posts/${post.id}`}>
+                {post.title}
+              </Link>
+              <div
+                className="delete-icon"
+                value={post.id}
+                onClick={()=>this.onDeleteClick(post.id)}
+              >x</div>
+            </li>
+          </div>
         );
       }
     });
@@ -38,17 +40,20 @@ class PostsIndex extends Component {
     return (
       <div>
         <div className="text-xs-right">
-          <Link className="btn btn-primary" to="/posts/new">
-            Add a Post
-          </Link>
           <Link className="btn btn-primary" to="/wall">
-            VK API
+            GET POSTS
+          </Link>
+          <Link className="btn btn-primary" to="/search">
+            USER SEARCH
           </Link>
         </div>
         <h3>Posts</h3>
         <ul className="list-group">
           {this.renderPosts()}
         </ul>
+        <Link className="add-post" to="/posts/new">
+          +
+        </Link>
       </div>
     );
   }
