@@ -4,18 +4,39 @@ import _ from "lodash";
 
 class UserList extends Component {
 
+  getMonth(bdate){
+    if(bdate){
+      let date = new Date();
+      date.setMonth(bdate.split('.')[1]);
+      return date.toLocaleString(navigator.language, { month: "short" })
+    }
+  }
+
+  getYear(bdate){
+    if(bdate){
+      return bdate.split('.')[2];
+    }
+  }
+
+  getDay(bdate){
+    if(bdate){
+      return bdate.split('.')[0];
+    }
+  }
+
   renderUsers() {
     return _.map(this.props.users, user => {
       const img = {
-        background: `url(${user.photo_400_orig}) center/cover no-repeat`
+        background: `url(${user.photo_200_orig}) center/cover no-repeat`
       };
+
       return (
         <div className="example-1 card" key={user.id} >
           <div className="wrapper" style={ img }>
-            <div className="date">
-              <span className="day">12</span>
-              <span className="month">Aug</span>
-              <span className="year">2016</span>
+            <div className={ user.sex === 1 ? 'female date' : 'male date' } >
+              <span  className="day">{this.getDay(user.bdate)}</span>
+              <span className="month">{this.getMonth(user.bdate)}</span>
+              <span className="year">{this.getYear(user.bdate)}</span>
             </div>
             <div className="data">
               <div className="content">

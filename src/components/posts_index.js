@@ -46,6 +46,9 @@ class PostsIndex extends Component {
           <Link className="btn btn-primary" to="/search">
             USER SEARCH
           </Link>
+          <Link className="btn btn-primary" to="/cover">
+            COVER CANVAS
+          </Link>
         </div>
         <h3>Posts</h3>
         <ul className="list-group">

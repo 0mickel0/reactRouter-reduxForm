@@ -1,4 +1,5 @@
-$bermuda: #77d7b9;
+$male: #8ea2d7;
+$female: #f4bfff;
 
 .app-wrapper {
   margin: 10px;
@@ -114,7 +115,7 @@ $bermuda: #77d7b9;
 .card {
   margin: 10px;
   float: left;
-  width: 350px;
+  width: 250px;
   .menu-content {
     margin: 0;
     padding: 0;
@@ -137,7 +138,7 @@ $bermuda: #77d7b9;
   }
   .wrapper {
     background-color: white;
-    min-height: 420px;
+    min-height: 350px;
     position: relative;
     overflow: hidden;
     box-shadow: -7px 11px 12px rgba(0, 0, 0, 0.2);
@@ -178,11 +179,16 @@ $bermuda: #77d7b9;
 }
 
 .example-1 {
+  .female {
+    background-color: $female;
+  }
+  .male {
+    background-color: $male;
+  }
   .date {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: $bermuda;
     color: white;
     padding: 0.8em;
     span {
@@ -257,7 +263,7 @@ $bermuda: #77d7b9;
     li {
       width: 33.333333%;
       float: left;
-      background-color: $bermuda;
+      background-color: $male;
       height: 60px;
       position: relative;
     }
@@ -274,4 +280,11 @@ $bermuda: #77d7b9;
   }
 }
 
-
+.cover-wrapper{
+  .cover-canvas{
+    width: 100%;
+  }
+  .cover-img{
+    display: none;
+  }
+}
