@@ -12,7 +12,7 @@ const GROUP_ID = "126373581";
 const COUNT = "&count=20";
 const FIELDS = "&fields=photo,screen_name,sex,bdate,city,country,photo_200_orig,online,status";
 const API_KEY = "&access_token=e7c0c2b711971f158db29d3ab7c8638d74ff420fb757208db5e7068261594fee95979f9d2a9a1e9b33d1f";
-const UPL_URL = "https://pu.vk.com/c830208/upload.php?_query=eyJhY3QiOiJvd25lcl9jb3ZlciIsIm9pZCI6LTEyNjM3MzU4MSwiYXBpIjp0cnVlLCJhcGlfd3JhcCI6eyJoYXNoIjoiOGQ5M2FjNGFhNTVlMTg1NDY2IiwicGhvdG8iOiJ7cmVzdWx0fSJ9LCJtaWQiOjI2MjA2NDc4LCJzZXJ2ZXIiOjgzMDIwOCwiX29yaWdpbiI6Imh0dHBzOlwvXC9hcGkudmsuY29tIiwiX3NpZyI6IjIwN2QzMzYwMjQ5Y2M5ZDYyYWVhNTM0Y2VlMDY4NjgyIn0&_crop=0,0,795,200"
+let UPL_URL = "https://pu.vk.com/c824501/upload.php?_query=eyJhY3QiOiJvd25lcl9jb3ZlciIsIm9pZCI6LTEyNjM3MzU4MSwiYXBpIjp0cnVlLCJhcGlfd3JhcCI6eyJoYXNoIjoiZGJiNzA4MDBiNWEzNWNjNzZmIiwicGhvdG8iOiJ7cmVzdWx0fSJ9LCJtaWQiOjI2MjA2NDc4LCJzZXJ2ZXIiOjgyNDUwMSwiX29yaWdpbiI6Imh0dHBzOlwvXC92ay5jb20iLCJfc2lnIjoiZjZiOGU1MjYyOWUxYmFmOGJhZWMzYTgyODIyN2E0MDAifQ&_crop=0,0,1590,400"
 
 export function fetchWallItems() {
   const url = `${ROOT_URL}/wall.get?owner_id=-${GROUP_ID}${API_V}${API_KEY}`;
@@ -39,35 +39,51 @@ export function fetchUsers(user) {
   }));
 }
 
-export function fetchUploadCoverUrl() {
-  const url = `${ROOT_URL}/photos.getOwnerCoverPhotoUploadServer?group_id=${GROUP_ID}${API_V}${API_KEY}`;
-  return axios.get(url).then(response => ({
-    type: FETCH_UPLOAD_COVER_URL,
-    payload: response.data.response
-  })
-  );
+export function fetchUploadCoverUrl(image) {
+  const url = `${ROOT_URL}/photos.getOwnerCoverPhotoUploadServer?group_id=${GROUP_ID}&crop_x2=1590&crop_y2=400${API_V}${API_KEY}`;
+  return (
+    axios.get(url)
+      .then( response => {
+          postToUploadUrl(response, image)
+        }
+      )
+      .catch(function (error) {
+        console.log('error', error);
+      })
+  )
 }
 
-export function postToUploadUrl(image) {
-  console.log(image);
-  var fd = new FormData();
+export function postToUploadUrl(response, image) {
+  UPL_URL = response.data.response.upload_url + API_KEY;
+  const fd = new FormData();
   fd.append('photo', image);
-  const url = UPL_URL;
-  const config = { headers: { 'Content-Type': 'multipart/form-data' } };
   axios({
     method: 'post',
-    url: url,
+    url: UPL_URL,
     data: fd,
     config: { headers: {'Content-Type': 'multipart/form-data' }}
   })
-  .then(function (response) {
-    console.log(response);
-  })
+  .then(response => {
+    saveOwnerCoverPhoto(response.data)
+    }
+  )
   .catch(function (error) {
-    console.log(error);
+    console.log('error', error);
   });
-  // return {
-  //   type: POST_TO_UPLOAD_URL,
-  //   payload: request
-  // };
+}
+
+
+export function saveOwnerCoverPhoto(response) {
+  const url = `${ROOT_URL}photos.saveOwnerCoverPhoto?hash=${response.hash}&photo=${response.photo}${API_V}${API_KEY}`;
+  console.log('save', url);
+  return (
+    axios.get(url)
+      .then( response => {
+          console.log('done', response)
+        }
+      )
+      .catch(function (error) {
+        console.log('error', error);
+      })
+  )
 }

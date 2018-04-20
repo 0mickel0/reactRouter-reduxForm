@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import{ createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import ReduxPromise from "redux-promise";
-import thunk from 'redux-thunk'
 import { devToolsEnhancer } from 'redux-devtools-extension';
 import './app.scss';
 
